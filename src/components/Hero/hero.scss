@@ -1,0 +1,126 @@
+@import '../../scss/config';
+
+.hero {
+  background: url('/assets/img/hero.png');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  .logo {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+  }
+  
+  h1 {
+    @include fontType('bold');
+    font-size: 48px;
+    max-width: 400px;
+    margin-top: 30px;
+
+    b {
+      color: $primary;
+    }
+  }
+
+  strong {
+    @include fontType('regular');
+    @include fontSize('l');
+    max-width: 450px;
+    display: block;
+    line-height: 1.4;
+    margin-top: 20px;
+  }
+
+  button {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hamburger {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 40px;
+    height: 25px;
+    user-select: none;
+    cursor: pointer;
+
+    &.close {
+      .slice:first-child,
+      .slice:last-child {
+        opacity: 0;
+      }
+
+      .slice:first-child {
+        transform: translateY(20px) scale(0);
+      }
+
+      .slice:last-child {
+        transform: translateY(-20px) scale(0);
+      }
+
+      .slice:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      .slice:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+
+    .slice {
+      width: 100%;
+      position: absolute;
+      height: 3px;
+      border-radius: 4px;
+      background: $white;
+      transition: all 0.3s cubic-bezier(.55, 0, .1, 1);
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:last-child {
+        bottom: 0;
+      }
+    }
+  }
+
+  .menu {
+    position: absolute;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    top: 100px;
+    overflow: hidden;
+
+    &.visible .menu-item {
+      right: 0;
+    }
+
+    .menu-item {
+      position: absolute;
+      right: -100%;
+      transition: all 0.6s cubic-bezier(.55, 0, .1, 1);
+      cursor: pointer;
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 30px;
+        transition-delay: 0.1s;
+      }
+    }
+  }
+}

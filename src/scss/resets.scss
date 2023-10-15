@@ -1,0 +1,49 @@
+@import './config';
+@import './animations';
+
+@font-face {
+  font-family: Regular;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Bold;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-Bold.woff2') format('woff2');
+}
+
+body {
+  @include fontType('regular');
+  @include fontSize('regular');
+  background: $black;
+  color: $white;
+  margin: 0;
+}
+
+section {
+  height: 100vh;
+  padding: 120px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  line-height: 1.4;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}

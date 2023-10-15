@@ -1,0 +1,8 @@
+@mixin fontType($type: 'regular') {
+  font-family: #{map-get($fontTypes, $type)};
+  font-weight: #{map-get($fontWeights, $type)};
+}
+
+@mixin fontSize($size: 'regular') {
+  font-size: #{map-get($fontSizes, $size)};
+}

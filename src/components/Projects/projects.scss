@@ -1,0 +1,43 @@
+@import '../../scss/config';
+
+.project-section {
+  background: radial-gradient(ellipse at bottom center, $primary-dark 0%, $black 75%);
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  
+    li {
+      border-radius: 4px;
+      padding: 15px;
+      background: $black;
+    }
+  
+    a {
+      color: $white;
+    }
+  
+    img {
+      margin-left: auto;
+      display: block;
+    }
+  
+    b {
+      display: block;
+      margin-top: 20px;
+    }
+  
+    span {
+      @include fontSize('md');
+      color: $off-white;
+    }
+  }
+  
+  .project-cta {
+    display: block;
+    margin: 100px auto 0;
+  }
+}
+

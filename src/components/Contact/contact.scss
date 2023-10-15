@@ -1,0 +1,48 @@
+@import '../../scss/config';
+
+.contact {
+  background: radial-gradient(ellipse at top center, $primary-dark 0%, $black 75%);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+
+  }
+
+  input,
+  textarea {
+    @include fontType('regular');
+    padding: 10px;
+  }
+
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+
+  .socials {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  div {
+    margin: 100px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .heart {
+    cursor: pointer;
+    
+    &:hover {
+      animation-name: Beating;
+      animation-iteration-count: 1;
+      animation-duration: 2s;
+    }
+  }
+}  
