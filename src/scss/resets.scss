@@ -22,8 +22,8 @@ body {
 }
 
 section {
-  height: 100vh;
-  padding: 120px;
+  min-height: 100vh;
+  padding: 40px;
   box-sizing: border-box;
   position: relative;
 }
@@ -46,4 +46,10 @@ p {
 
 a {
   text-decoration: none;
+}
+
+@include media('xs') {
+  section {
+    padding: 120px;
+  }
 }

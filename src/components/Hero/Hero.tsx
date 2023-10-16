@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { Button } from '../Button/index.ts'
 
@@ -15,8 +15,12 @@ export const Hero = () => {
     heroCTA
   } = config
 
-  const scroll = () => {
-    console.log('clicked');
+  const scroll = (index: number) => {
+    document
+      .querySelectorAll('section')[index]
+      .scrollIntoView({ behavior: 'smooth' })
+
+    setMenuOpen(false)
   }
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
@@ -44,12 +48,16 @@ export const Hero = () => {
       </div>
       <ul className={menuOpen ? 'menu visible' : 'menu'}>
         {navigation.map((link, index) => (
-          <li className="menu-item" key={index}>
+          <li
+            className="menu-item"
+            key={index}
+            onClick={() => scroll(index + 1)}
+          >
             {link}
           </li>
         ))}
       </ul>
-      <Button onClick={scroll}>{heroCTA}</Button>
+      <Button onClick={() => scroll(1)}>{heroCTA}</Button>
     </section>
   )
 }

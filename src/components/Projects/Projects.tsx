@@ -15,7 +15,9 @@ export const Projects = () => {
   } = config
 
   const scroll = () => {
-    console.log('clicked');
+      document
+        .querySelector('.contact')!
+        .scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
