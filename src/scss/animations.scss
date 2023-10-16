@@ -8,3 +8,24 @@
   75%  { transform: scale(1.03); }
   100% { transform: scale(1); }
 }
+
+@keyframes LogoAnimation {
+  0% { width: 0; }
+  100% { width: 75px; }
+}
+
+@keyframes MenuSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes CurtainSlideUp {
+  0% { height: 100%; }
+  100% { height: 0%; }
+}

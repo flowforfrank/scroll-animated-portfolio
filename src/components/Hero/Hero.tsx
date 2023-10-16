@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { Button } from '../Button/index.ts'
 
 import { config } from '../../../config.ts'
+import { scrollTo,classNames } from '../../utils.ts'
 import './hero.scss'
 
 export const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   const {
     title,
@@ -16,29 +18,35 @@ export const Hero = () => {
   } = config
 
   const scroll = (index: number) => {
-    document
-      .querySelectorAll('section')[index]
-      .scrollIntoView({ behavior: 'smooth' })
-
+    scrollTo('section', index)
     setMenuOpen(false)
   }
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
 
+  setTimeout(() => {
+    setMounted(true)
+  }, 700)
+
   return (
     <section className="hero">
-      <img
-        src="/assets/img/logo.svg"
-        alt="logo"
-        width="75"
-        height="30"
-        className="logo"
-      />
+      <div className="logo">
+        <img
+          src="/assets/img/logo.svg"
+          alt="logo"
+          width="75"
+          height="30"
+        />
+      </div>
       <h1 dangerouslySetInnerHTML={{ __html: title }} />
       <strong>{subTitle}</strong>
 
       <div
-        className={menuOpen ? 'hamburger close' : 'hamburger'}
+        className={classNames([
+          'hamburger',
+          menuOpen && 'close',
+          !mounted && 'animate-in'
+        ])}
         onClick={toggleMenu}
       >
         <span className="slice"></span>
@@ -58,6 +66,7 @@ export const Hero = () => {
         ))}
       </ul>
       <Button onClick={() => scroll(1)}>{heroCTA}</Button>
+      <div className="curtain" />
     </section>
   )
 }
