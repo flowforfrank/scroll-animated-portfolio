@@ -48,6 +48,11 @@ a {
   text-decoration: none;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 @include media('xs') {
   section {
     padding: 120px;

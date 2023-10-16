@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
-import { config } from '../../../config.ts'
 
-import { Button } from '../Button/index.ts'
-import { interpolate, scrollTo } from '../../utils.ts'
-import { Section } from '../Section'
+import { Button } from '@components/Button'
+import { Section } from '@components/Section'
+
+import { config } from '@config'
+import { interpolate, scrollTo } from '@utils'
 
 import './projects.scss'
 
@@ -34,6 +35,49 @@ export const Projects = () => {
       transform: 0
     }
   })
+
+  const rotate = (event: React.MouseEvent<HTMLLIElement>) => {
+    const target = event.currentTarget
+    const bounds = target.getBoundingClientRect()
+
+    const mouseX = event.clientX
+    const mouseY = event.clientY
+
+    const leftX = mouseX - bounds.x
+    const topY = mouseY - bounds.y
+
+    const center = {
+      x: leftX - bounds.width / 2,
+      y: topY - bounds.height / 2
+    }
+    
+    target.style.transform = `
+      scale3d(1.1, 1.1, 1.1)
+      rotate3d(
+        ${center.y / 100},
+        ${-center.x / 100},
+        0,
+        15deg
+      )
+    `;
+    
+    (target.querySelector('.glow') as HTMLDivElement).style.backgroundImage = `
+      radial-gradient(
+        circle at
+        ${center.x * 2 + bounds.width / 2}px
+        ${center.y * 2 + bounds.height / 2}px,
+        rgba(255, 255, 255, .15),
+        rgba(0, 0, 0, 0)
+      )
+    `
+  }
+
+  const resetStyles = (event: React.MouseEvent<HTMLLIElement>) => {
+    const target = event.currentTarget
+
+    target.style.transform = '';
+    (target.querySelector('.glow') as HTMLDivElement).style.background = ''
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -93,54 +137,62 @@ export const Projects = () => {
     })
   }, [projects])
 
-
   return (
     <section className="project-section" ref={sectionRef}>
-      <Section
-        title={projectsTitle}
-        description={projectsDescription}
-        headingStyles={{
-          opacity: animation.heading.opacity,
-          transform: `translateX(-${animation.heading.transform}px)`
-        }}
-        contentStyles={{
-          opacity: animation.description.opacity,
-          transform: `translateX(-${animation.description.transform}px)`
-        }}
-      />
-      <ul className="projects">
-        {projects.map((project, index) => (
-          <li key={index} style={{
-            background: `linear-gradient(315deg, #000 0%, ${project.background} 100%)`,
-            opacity: animation.projects[index].opacity,
-            transform: `translateY(${animation.projects[index].transform}px)`
-          }}>
-            <a href={project.url}>
-              <img
-                src={`/assets/icons/${project.icon}.svg`}
-                alt={project.icon}
-                width="50"
-                height="50"
-                loading="lazy"
-              />
+      <div className="container">
+        <Section
+          title={projectsTitle}
+          description={projectsDescription}
+          headingStyles={{
+            opacity: animation.heading.opacity,
+            transform: `translateX(-${animation.heading.transform}px)`
+          }}
+          contentStyles={{
+            opacity: animation.description.opacity,
+            transform: `translateX(-${animation.description.transform}px)`
+          }}
+        />
+        <ul className="projects">
+          {projects.map((project, index) => (
+            <li
+              key={index}
+              style={{
+                background: `linear-gradient(315deg, #000 0%, ${project.background} 100%)`,
+                opacity: animation.projects[index].opacity,
+                transform: `translateY(${animation.projects[index].transform}px)`
+              }}
+              onMouseMove={rotate}
+              onMouseLeave={resetStyles}
+            >
+              <a href={project.url}>
+                <img
+                  src={`/assets/icons/${project.icon}.svg`}
+                  alt={project.icon}
+                  width="50"
+                  height="50"
+                  loading="lazy"
+                />
 
-              <b>{project.title}</b>
-              <span style={{ color: project.color }}>
-                {project.description}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <Button
-        onClick={() => scrollTo('.contact')} className="project-cta"
-        styles={{
-          opacity: animation.cta.opacity,
-          transform: `translateY(${animation.cta.transform}px)`
-        }}
-      >
-        {projectsCTA}
-      </Button>
+                <b>{project.title}</b>
+                <span style={{ color: project.color }}>
+                  {project.description}
+                </span>
+              </a>
+              <div className="texture" />
+              <div className="glow" />
+            </li>
+          ))}
+        </ul>
+        <Button
+          onClick={() => scrollTo('.contact')} className="project-cta"
+          styles={{
+            opacity: animation.cta.opacity,
+            transform: `translateY(${animation.cta.transform}px)`
+          }}
+        >
+          {projectsCTA}
+        </Button>
+      </div>
     </section>
   )
 }

@@ -1,12 +1,17 @@
-import React from 'react'
-import { config } from '../../../config.ts'
+import React, { useRef } from 'react'
 
-import { Button } from '../Button/index.ts'
-import { Section } from '../Section/index.ts'
+import { Button } from '@components/Button'
+import { Section } from '@components/Section'
+
+import { config } from '@config'
+import { isValidEmail } from '@utils'
 
 import './contact.scss'
 
 export const Contact = () => {
+  const emailRef = useRef<null | HTMLInputElement>(null)
+  const messageRef = useRef<null | HTMLTextAreaElement>(null)
+
   const {
     contactTitle,
     contactDescription,
@@ -22,54 +27,75 @@ export const Contact = () => {
   }
 
   const send = (event: React.MouseEvent) => {
+    const email = emailRef.current!.value
+    const message = messageRef.current!.value
+    
     event.preventDefault()
-    console.log('send message')
+
+    emailRef.current!.classList.remove('error')
+    messageRef.current!.classList.remove('error')
+
+    if (!isValidEmail(email)) {
+      emailRef.current!.classList.add('error')
+    }
+
+    if (!message) {
+      messageRef.current!.classList.add('error')
+    }
+
+    if (isValidEmail(email) && message) {
+      console.log('Send message', email, message)
+    }
   }
 
   return (
     <section className="contact">
-      <Section
-        title={contactTitle}
-        description={contactDescription}
-      />
-
-      <form>
-        <input
-          type="email"
-          placeholder="Your email"
+      <div className="container">
+        <Section
+          title={contactTitle}
+          description={contactDescription}
         />
-        <textarea
-          placeholder="Your message"
-        />
-        <Button onClick={send}>Send</Button>
-      </form>
 
-      <ul className="socials">
-        {socialLinks.map((link, index) => (
-          <li key={index}>
-            <a href={link}>
-              <img
-                src={`/assets/icons/${getSocialType(link)}.svg`}
-                alt={getSocialType(link)}
-                width="35"
-                height="35"
-                loading="lazy"
-              />
-            </a>
-          </li>
-        ))}
-      </ul>
+        <form>
+          <input
+            type="email"
+            placeholder="Your email"
+            ref={emailRef}
+          />
+          <textarea
+            placeholder="Your message"
+            ref={messageRef}
+          />
+          <Button onClick={send}>Send</Button>
+        </form>
 
-      <div>
-        Made with love
-        <img
-          src="/assets/icons/heart.svg"
-          alt="Heart"
-          width="25"
-          height="20"
-          loading="lazy"
-          className="heart"
-        />
+        <ul className="socials">
+          {socialLinks.map((link, index) => (
+            <li key={index}>
+              <a href={link}>
+                <img
+                  src={`/assets/icons/${getSocialType(link)}.svg`}
+                  alt={getSocialType(link)}
+                  width="35"
+                  height="35"
+                  loading="lazy"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="made">
+          Made with
+          <img
+            src="/assets/icons/heart.svg"
+            alt="Heart"
+            width="25"
+            height="20"
+            loading="lazy"
+            className="heart"
+          />
+        </div>
       </div>
     </section>
   )

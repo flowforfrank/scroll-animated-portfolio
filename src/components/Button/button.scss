@@ -7,6 +7,6 @@ button {
   background: $primary;
   color: $white;
   padding: 15px 20px;
-  border-radius: 4px;
+  border-radius: $radius;
   cursor: pointer;
 }

@@ -15,6 +15,12 @@
   textarea {
     @include fontType('regular');
     padding: 10px;
+    border: 0;
+    border-radius: $radius;
+
+    &.error {
+      border: 2px solid $error;
+    }
   }
 
   textarea {
@@ -29,7 +35,7 @@
     gap: 10px;
   }
 
-  div {
+  .made {
     position: absolute;
     bottom: 50px;
     left: 50%;

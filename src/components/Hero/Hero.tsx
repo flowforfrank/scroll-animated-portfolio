@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
-import { Button } from '../Button/index.ts'
+import { Button } from '@components/Button'
 
-import { config } from '../../../config.ts'
-import { scrollTo,classNames } from '../../utils.ts'
+import { config } from '@config'
+import { scrollTo,classNames } from '@utils'
+
 import './hero.scss'
 
 export const Hero = () => {
@@ -30,43 +31,45 @@ export const Hero = () => {
 
   return (
     <section className="hero">
-      <div className="logo">
-        <img
-          src="/assets/img/logo.svg"
-          alt="logo"
-          width="75"
-          height="30"
-        />
-      </div>
-      <h1 dangerouslySetInnerHTML={{ __html: title }} />
-      <strong>{subTitle}</strong>
+      <div className="container">
+        <div className="logo">
+          <img
+            src="/assets/img/logo.svg"
+            alt="logo"
+            width="75"
+            height="30"
+          />
+        </div>
+        <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        <strong>{subTitle}</strong>
 
-      <div
-        className={classNames([
-          'hamburger',
-          menuOpen && 'close',
-          !mounted && 'animate-in'
-        ])}
-        onClick={toggleMenu}
-      >
-        <span className="slice"></span>
-        <span className="slice"></span>
-        <span className="slice"></span>
-        <span className="slice"></span>
+        <div
+          className={classNames([
+            'hamburger',
+            menuOpen && 'close',
+            !mounted && 'animate-in'
+          ])}
+          onClick={toggleMenu}
+        >
+          <span className="slice"></span>
+          <span className="slice"></span>
+          <span className="slice"></span>
+          <span className="slice"></span>
+        </div>
+        <ul className={menuOpen ? 'menu visible' : 'menu'}>
+          {navigation.map((link, index) => (
+            <li
+              className="menu-item"
+              key={index}
+              onClick={() => scroll(index + 1)}
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
+        <Button onClick={() => scroll(1)}>{heroCTA}</Button>
+        <div className="curtain" />
       </div>
-      <ul className={menuOpen ? 'menu visible' : 'menu'}>
-        {navigation.map((link, index) => (
-          <li
-            className="menu-item"
-            key={index}
-            onClick={() => scroll(index + 1)}
-          >
-            {link}
-          </li>
-        ))}
-      </ul>
-      <Button onClick={() => scroll(1)}>{heroCTA}</Button>
-      <div className="curtain" />
     </section>
   )
 }
