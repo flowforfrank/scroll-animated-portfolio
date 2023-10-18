@@ -1,57 +1,57 @@
 @import '../../scss/config';
 
 .contact {
-  background: radial-gradient(ellipse at top center, $primary-dark 0%, $black 75%);
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-
-  }
-
-  input,
-  textarea {
-    @include fontType('regular');
-    padding: 10px;
-    border: 0;
-    border-radius: $radius;
-
-    &.error {
-      border: 2px solid $error;
-    }
-  }
-
-  textarea {
-    resize: none;
-    height: 100px;
-  }
-
-  .socials {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .made {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-  }
-
-  .heart {
-    cursor: pointer;
+    background: radial-gradient(ellipse at top center, $primary-dark 0%, $black 75%);
     
-    &:hover {
-      animation-name: Beating;
-      animation-iteration-count: 1;
-      animation-duration: 2s;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+        
     }
-  }
+    
+    input,
+    textarea {
+        @include fontType('regular');
+        padding: 10px;
+        border: 0;
+        border-radius: $radius;
+        
+        &.error {
+            border: 2px solid $error;
+        }
+    }
+    
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+    
+    .socials {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .made {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .heart {
+        cursor: pointer;
+        
+        &:hover {
+            animation-name: Beating;
+            animation-iteration-count: 1;
+            animation-duration: 2s;
+        }
+    }
 }  

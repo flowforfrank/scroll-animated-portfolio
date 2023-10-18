@@ -5,11 +5,11 @@ import { Projects } from '@components/Projects'
 import { Contact } from '@components/Contact'
 
 export const App = () => {
-  return (
-    <React.Fragment>
-      <Hero />
-      <Projects />
-      <Contact />
-    </React.Fragment>
-  )
+    return (
+        <React.Fragment>
+            <Hero />
+            <Projects />
+            <Contact />
+        </React.Fragment>
+    )
 }

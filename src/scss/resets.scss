@@ -2,59 +2,59 @@
 @import './animations';
 
 @font-face {
-  font-family: Regular;
-  font-display: swap;
-  src: url('/assets/fonts/Inter-Regular.woff2') format('woff2');
+    font-family: Regular;
+    font-display: swap;
+    src: url('/assets/fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: Bold;
-  font-display: swap;
-  src: url('/assets/fonts/Inter-Bold.woff2') format('woff2');
+    font-family: Bold;
+    font-display: swap;
+    src: url('/assets/fonts/Inter-Bold.woff2') format('woff2');
 }
 
 body {
-  @include fontType('regular');
-  @include fontSize('regular');
-  background: $black;
-  color: $white;
-  margin: 0;
+    @include fontType('regular');
+    @include fontSize('regular');
+    background: $black;
+    color: $white;
+    margin: 0;
 }
 
 section {
-  min-height: 100vh;
-  padding: 40px;
-  box-sizing: border-box;
-  position: relative;
+    min-height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
 }
 
 h1,
 h2 {
-  margin: 0;
+    margin: 0;
 }
 
 ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 p {
-  line-height: 1.4;
-  margin: 0;
+    line-height: 1.4;
+    margin: 0;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 @include media('xs') {
-  section {
-    padding: 120px;
-  }
+    section {
+        padding: 120px;
+    }
 }
