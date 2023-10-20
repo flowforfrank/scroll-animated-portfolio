@@ -1,0 +1,156 @@
+@import '../../scss/config';
+
+.hero {
+    background: url('/assets/img/hero.png');
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    
+    .logo {
+        height: 30px;
+        overflow: hidden;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        z-index: 1;
+        animation: LogoAnimation 1s $easing forwards;
+    }
+    
+    h1 {
+        @include fontType('bold');
+        font-size: 38px;
+        max-width: 400px;
+        margin-top: 120px;
+        
+        b {
+            color: $primary;
+        }
+    }
+    
+    strong {
+        @include fontType('regular');
+        @include fontSize('l');
+        max-width: 450px;
+        display: block;
+        line-height: 1.4;
+        margin-top: 20px;
+    }
+    
+    button {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .hamburger {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 40px;
+        height: 25px;
+        user-select: none;
+        cursor: pointer;
+        z-index: 1;
+        
+        &.close {
+            .slice:first-child,
+            .slice:last-child {
+                opacity: 0;
+            }
+            
+            .slice:first-child {
+                transform: translateY(20px) scale(0);
+            }
+            
+            .slice:last-child {
+                transform: translateY(-20px) scale(0);
+            }
+            
+            .slice:nth-child(2) {
+                transform: rotate(45deg);
+            }
+            
+            .slice:nth-child(3) {
+                transform: rotate(-45deg);
+            }
+        }
+        
+        &.animate-in .slice {
+            opacity: 0;
+            animation: MenuSlideIn .6s $easing forwards;
+        }
+        
+        .slice {
+            width: 100%;
+            position: absolute;
+            height: 3px;
+            border-radius: $radius;
+            background: $white;
+            transition: all .3s $easing;
+            
+            &:first-child {
+                top: 0;
+            }
+            
+            &:nth-child(2),
+            &:nth-child(3) {
+                top: 45%;
+                animation-delay: .2s;
+            }
+            
+            &:last-child {
+                bottom: 0;
+                animation-delay: .4s;
+            }
+        }
+    }
+    
+    .menu {
+        position: absolute;
+        right: 50px;
+        width: 100px;
+        height: 100px;
+        top: 100px;
+        overflow: hidden;
+        z-index: 1;
+        
+        &.visible .menu-item {
+            right: 0;
+        }
+        
+        .menu-item {
+            position: absolute;
+            right: -100%;
+            transition: all 0.6s $easing;
+            cursor: pointer;
+            
+            &:first-child {
+                top: 0;
+            }
+            
+            &:nth-child(2) {
+                top: 30px;
+                transition-delay: 0.1s;
+            }
+        }
+    }
+    
+    .curtain {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $black;
+        transition: height .3s $easing;
+        animation: CurtainSlideUp .9s $easing forwards .6s;
+    }
+}
+
+@include media('xs') {
+    .hero h1 {
+        margin-top: 30px;
+        font-size: 48px;
+    }
+}

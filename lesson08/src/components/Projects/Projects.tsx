@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 
-import { Button } from '@components/Button'
-import { Section } from '@components/Section'
+import { Button } from '../Button'
+import { Section } from '../Section'
 
-import { config } from '@config'
-import { interpolate, scrollTo } from '@utils'
+import { config } from '../../../config.ts'
+import { interpolate, scrollTo } from '../../utils.ts'
 
 import './projects.scss'
 

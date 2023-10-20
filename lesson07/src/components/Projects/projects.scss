@@ -1,0 +1,67 @@
+@import '../../scss/config';
+
+.project-section {
+    background: radial-gradient(ellipse at bottom center, $primary-dark 0%, $black 75%);
+    
+    .projects {
+        display: grid;
+        gap: 20px;
+        margin-top: 40px;
+        
+        li {
+            border-radius: $radius;
+            padding: 15px;
+            background: $black;
+            transition: all .3s ease-out;
+            position: relative;
+            
+            .texture {
+                border-radius: $radius;
+                background-image: url('/assets/img/card.png');
+                mix-blend-mode: color-burn;
+                pointer-events: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        a {
+            color: $white;
+        }
+        
+        img {
+            margin-left: auto;
+            display: block;
+        }
+        
+        b {
+            display: block;
+            margin-top: 20px;
+        }
+        
+        span {
+            @include fontSize('md');
+            color: $off-white;
+        }
+    }
+    
+    .project-cta {
+        display: block;
+        margin: 100px auto 0;
+    }
+}
+
+@include media('xs') {
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@include media('sm') {
+    .projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

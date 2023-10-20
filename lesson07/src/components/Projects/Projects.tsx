@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 
-import { Button } from '@components/Button'
-import { Section } from '@components/Section'
+import { Button } from '../Button'
+import { Section } from '../Section'
 
-import { config } from '@config'
-import { interpolate, scrollTo } from '@utils'
+import { config } from '../../../config.ts'
+import { interpolate, scrollTo } from '../../utils.ts'
 
 import './projects.scss'
 
@@ -35,49 +35,6 @@ export const Projects = () => {
             transform: 0
         }
     })
-    
-    const rotate = (event: React.MouseEvent<HTMLLIElement>) => {
-        const target = event.currentTarget
-        const bounds = target.getBoundingClientRect()
-        
-        const mouseX = event.clientX
-        const mouseY = event.clientY
-        
-        const left = mouseX - bounds.x
-        const top = mouseY - bounds.y
-
-        const center = {
-            x: left - bounds.width / 2,
-            y: top - bounds.height / 2
-        }
-        
-        target.style.transform = `
-            scale3d(1.1, 1.1, 1.1)
-            rotate3d(
-                ${-center.y},
-                ${center.x},
-                0,
-                15deg
-            )
-        `;
-            
-        (target.querySelector('.glow') as HTMLDivElement).style.backgroundImage = `
-            radial-gradient(
-                circle at
-                ${center.x + bounds.width / 2}px
-                ${center.y + bounds.height / 2}px,
-                rgba(255, 255, 255, .15),
-                rgba(0, 0, 0, 0)
-            )
-        `
-    }
-            
-    const resetStyles = (event: React.MouseEvent<HTMLLIElement>) => {
-        const target = event.currentTarget
-        
-        target.style.transform = '';
-        (target.querySelector('.glow') as HTMLDivElement).style.background = ''
-    }
             
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -161,8 +118,6 @@ export const Projects = () => {
                                 opacity: animation.projects[index].opacity,
                                 transform: `translateY(${animation.projects[index].transform}px)`
                             }}
-                            onMouseMove={rotate}
-                            onMouseLeave={resetStyles}
                         >
                             <a href={project.url}>
                                 <img
@@ -179,7 +134,6 @@ export const Projects = () => {
                                 </span>
                             </a>
                             <div className="texture" />
-                            <div className="glow" />
                         </li>
                     ))}
                 </ul>

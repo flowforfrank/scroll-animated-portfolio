@@ -1,0 +1,12 @@
+@import '../../scss/config';
+
+button {
+    @include fontType('bold');
+    @include fontSize('md');
+    border: 0;
+    background: $primary;
+    color: $white;
+    padding: 15px 20px;
+    border-radius: $radius;
+    cursor: pointer;
+}
