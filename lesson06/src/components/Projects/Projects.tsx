@@ -48,7 +48,8 @@ export const Projects = () => {
                     ))}
                 </ul>
                 <Button
-                    onClick={() => scrollTo('.contact')} className="project-cta"
+                    onClick={() => scrollTo('.contact')}
+                    className="project-cta"
                 >
                     {projectsCTA}
                 </Button>

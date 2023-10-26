@@ -138,7 +138,8 @@ export const Projects = () => {
                     ))}
                 </ul>
                 <Button
-                    onClick={() => scrollTo('.contact')} className="project-cta"
+                    onClick={() => scrollTo('.contact')}
+                    className="project-cta"
                     styles={{
                         opacity: animation.cta.opacity,
                         transform: `translateY(${animation.cta.transform}px)`

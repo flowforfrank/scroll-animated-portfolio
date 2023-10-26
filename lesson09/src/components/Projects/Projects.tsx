@@ -54,8 +54,8 @@ export const Projects = () => {
         target.style.transform = `
             scale3d(1.1, 1.1, 1.1)
             rotate3d(
-                ${-center.y},
-                ${center.x},
+                ${center.y},
+                ${-center.x},
                 0,
                 15deg
             )
@@ -184,7 +184,8 @@ export const Projects = () => {
                     ))}
                 </ul>
                 <Button
-                    onClick={() => scrollTo('.contact')} className="project-cta"
+                    onClick={() => scrollTo('.contact')}
+                    className="project-cta"
                     styles={{
                         opacity: animation.cta.opacity,
                         transform: `translateY(${animation.cta.transform}px)`
