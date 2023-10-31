@@ -72,7 +72,7 @@ export const Contact = () => {
                 <ul className="socials">
                     {socialLinks.map((link, index) => (
                         <li key={index}>
-                            <a href={link}>
+                            <a href={link} target="_blank" rel="noreferrer">
                                 <img
                                     src={`/assets/icons/${getSocialType(link)}.svg`}
                                     alt={getSocialType(link)}
